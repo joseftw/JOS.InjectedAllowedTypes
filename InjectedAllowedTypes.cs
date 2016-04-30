@@ -67,6 +67,7 @@ namespace JOS.InjectedAllowedTypes
                     injectedAllowedTypesAttribute.RestrictedTypes.Concat(specifiedAllowedTypesAttribute.RestrictedTypes).Distinct().ToArray()
             };
 
+            //We(and episerver) are replacing null with IContentData, here we make sure to remove IContentData if we have any specific AllowedTypes set.
             if (injectedAllowedTypesAttribute.AllowedTypes.Any())
             {
                 mergedAllowedTypesAttribute.AllowedTypes =

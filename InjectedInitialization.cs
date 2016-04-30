@@ -1,4 +1,5 @@
-﻿using EPiServer.DataAbstraction.RuntimeModel;
+﻿using EPiServer.DataAbstraction;
+using EPiServer.DataAbstraction.RuntimeModel;
 using EPiServer.Framework;
 using EPiServer.Framework.Initialization;
 using EPiServer.ServiceLocation;
