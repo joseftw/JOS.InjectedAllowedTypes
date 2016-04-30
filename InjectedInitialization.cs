@@ -17,7 +17,6 @@ namespace JOS.InjectedAllowedTypes
 
         private static void ConfigureContainer(ConfigurationExpression container)
         {
-            //Swap out the default ContentRenderer for our custom
             container.For<IAvailableModelSettingsRepository>().Use<InjectedAvailableModelSettingsRepository>();
             container.For<IContentTypeModelAssigner>().Use<InjectedContentDataAttributeScanningAssigner>();
         }
