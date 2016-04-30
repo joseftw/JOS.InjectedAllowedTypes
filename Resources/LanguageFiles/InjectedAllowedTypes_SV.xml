@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<languages>
+  <language name="Svenska" id="sv">
+    <injectedallowedtypes>
+      <errormessages>
+        <notallowed>Innehållstypen "{0}" är tyvärr inte tillåten i den här {1}</notallowed>
+      </errormessages>
+    </injectedallowedtypes>
+  </language>
+</languages>

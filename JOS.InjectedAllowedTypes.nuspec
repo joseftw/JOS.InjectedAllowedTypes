@@ -1,0 +1,13 @@
+﻿<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+    <authors>Josef Ottosson</authors>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Allows for injection of AvailableContentTypes and AllowedTypes in EPiServer. Useful if your features doesn't know about each other until runtime.</description>
+  </metadata>
+  <files>
+    <file src="Resources/LanguageFiles/*" target="Resources/LanguageFiles/" />
+  </files>
+</package>

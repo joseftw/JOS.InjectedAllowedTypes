@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<languages>
+  <language name="English" id="en">
+    <injectedallowedtypes>
+      <errormessages>
+        <notallowed>The contenttype "{0}" is not allowed in this {1}</notallowed>
+      </errormessages>
+    </injectedallowedtypes>
+  </language>
+</languages>
