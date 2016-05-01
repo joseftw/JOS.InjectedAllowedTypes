@@ -149,6 +149,11 @@ namespace JOS.InjectedAllowedTypes
                 var references = value as IEnumerable<ContentReference>;
                 contentReferences = references.ToList();
             }
+            else if (value is ContentReference)
+            {
+                var contentReference = value as ContentReference;
+                contentReferences.Add(contentReference);
+            }
 
             foreach (var contentReference in contentReferences)
             {

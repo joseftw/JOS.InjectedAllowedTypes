@@ -8,9 +8,9 @@ namespace JOS.InjectedAllowedTypes
 {
     public static class InjectedAllowedTypes
     {
-        private static Dictionary<string, AllowedTypesAttribute> _injectedAllowedTypesAttributes = new Dictionary<string, AllowedTypesAttribute>();
+        private static Dictionary<string, InjectedAllowedTypesAttribute> _injectedAllowedTypesAttributes = new Dictionary<string, InjectedAllowedTypesAttribute>();
 
-        public static void RegisterInjectedAllowedTypesAttributes(Dictionary<string, AllowedTypesAttribute> customAllowedTypesAttributes)
+        public static void RegisterInjectedAllowedTypesAttributes(Dictionary<string, InjectedAllowedTypesAttribute> customAllowedTypesAttributes)
         {
             _injectedAllowedTypesAttributes = customAllowedTypesAttributes;
         }
