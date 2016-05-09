@@ -1,14 +1,18 @@
 ﻿using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("JOS.InjectedAllowedTypes")]
-[assembly: AssemblyDescription("Allows for injection of AvailableContentTypes and AllowedTypes in EPiServer. Useful if your features doesn't know about each other until runtime.")]
-[assembly: AssemblyCompany("Josef Ottosson")]
-[assembly: AssemblyProduct("JOS.InjectedAllowedTypes")]
-[assembly: AssemblyCopyright("Josef Ottosson Copyright ©  2016")]
+[assembly: AssemblyTitle("JOS.InjectedAllowedTypes.Tests")]
+[assembly: AssemblyDescription("")]
+[assembly: AssemblyConfiguration("")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("JOS.InjectedAllowedTypes.Tests")]
+[assembly: AssemblyCopyright("Copyright ©  2016")]
+[assembly: AssemblyTrademark("")]
+[assembly: AssemblyCulture("")]
 
 // Setting ComVisible to false makes the types in this assembly not visible 
 // to COM components.  If you need to access a type in this assembly from 
@@ -16,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("af98cc63-01cf-473f-a4fb-d08c2049dc20")]
+[assembly: Guid("29b8e5f6-0c96-4ee6-b70c-8b7b11735ca5")]
 
 // Version information for an assembly consists of the following four values:
 //
@@ -28,5 +32,5 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("0.8.0.0")]
-[assembly: AssemblyFileVersion("0.8.0.0")]
+[assembly: AssemblyVersion("1.0.0.0")]
+[assembly: AssemblyFileVersion("1.0.0.0")]

@@ -1,5 +1,4 @@
-﻿using EPiServer.DataAbstraction;
-using EPiServer.DataAbstraction.RuntimeModel;
+﻿using EPiServer.DataAbstraction.RuntimeModel;
 using EPiServer.Framework;
 using EPiServer.Framework.Initialization;
 using EPiServer.ServiceLocation;
@@ -18,8 +17,8 @@ namespace JOS.InjectedAllowedTypes
 
         private static void ConfigureContainer(ConfigurationExpression container)
         {
-            container.For<IAvailableModelSettingsRepository>().Use<InjectedAvailableModelSettingsRepository>();
-            container.For<IContentTypeModelAssigner>().Use<InjectedContentDataAttributeScanningAssigner>();
+            container.ForSingletonOf<IAvailableModelSettingsRepository>().Use<InjectedAvailableModelSettingsRepository>();
+            container.ForSingletonOf<IContentTypeModelAssigner>().Use<InjectedContentDataAttributeScanningAssigner>();
         }
         public void Initialize(InitializationEngine context)
         {

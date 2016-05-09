@@ -50,24 +50,24 @@ namespace JOS.InjectedAllowedTypes
                 injectedAllowedTypesAttribute = SetDefaultAllowedTypesAttributeValue();
             }
 
-            if (specifiedAllowedTypesAttribute == null)
+            var mergedAllowedTypesAttribute = new AllowedTypesAttribute
             {
-                specifiedAllowedTypesAttribute = new InjectedAllowedTypesAttribute
+                AllowedTypes = injectedAllowedTypesAttribute.AllowedTypes,
+                RestrictedTypes = injectedAllowedTypesAttribute.RestrictedTypes
+            };
+
+            if (specifiedAllowedTypesAttribute != null)
+            {
+                mergedAllowedTypesAttribute = new AllowedTypesAttribute
                 {
-                    AllowedTypes = new Type[0],
-                    RestrictedTypes = new Type[0]
+                    AllowedTypes =
+                    injectedAllowedTypesAttribute.AllowedTypes.Concat(specifiedAllowedTypesAttribute.AllowedTypes).Distinct().ToArray(),
+                    RestrictedTypes =
+                    injectedAllowedTypesAttribute.RestrictedTypes.Concat(specifiedAllowedTypesAttribute.RestrictedTypes).Distinct().ToArray()
                 };
             }
 
-            var mergedAllowedTypesAttribute = new AllowedTypesAttribute
-            {
-                AllowedTypes =
-                    injectedAllowedTypesAttribute.AllowedTypes.Concat(specifiedAllowedTypesAttribute.AllowedTypes).Distinct().ToArray(),
-                RestrictedTypes =
-                    injectedAllowedTypesAttribute.RestrictedTypes.Concat(specifiedAllowedTypesAttribute.RestrictedTypes).Distinct().ToArray()
-            };
-
-            //We(and episerver) are replacing null with IContentData, here we make sure to remove IContentData if we have any specific AllowedTypes set.
+            //We(and episerver) are adding IContentData as default, here we make sure to remove IContentData if we have any specific AllowedTypes set.
             if (injectedAllowedTypesAttribute.AllowedTypes.Any())
             {
                 mergedAllowedTypesAttribute.AllowedTypes =

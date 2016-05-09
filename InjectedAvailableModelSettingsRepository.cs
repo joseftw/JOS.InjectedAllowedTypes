@@ -30,6 +30,24 @@ namespace JOS.InjectedAllowedTypes
             return runtimeSettings;
         }
 
+        public override ContentTypeAvailableModelSetting GetRuntimeSetting(Type model)
+        {
+            var runtimeSetting = base.GetRuntimeSetting(model);
+            var customSetting = CustomSettings.FirstOrDefault(x => x.Key == model);
+            if (customSetting.Value == null)
+            {
+                return runtimeSetting;
+            }
+
+            var merged = MergeSettings(customSetting.Value, runtimeSetting);
+            return merged;
+        }
+
+        public override IContentTypeAvailableModelSetting GetSetting(Type model)
+        {
+            return this.GetRuntimeSetting(model);
+        }
+
         private ContentTypeAvailableModelSetting MergeSettings(ContentTypeAvailableModelSetting customSetting, ContentTypeAvailableModelSetting runtimeSetting)
         {
             var mergedSetting = new ContentTypeAvailableModelSetting

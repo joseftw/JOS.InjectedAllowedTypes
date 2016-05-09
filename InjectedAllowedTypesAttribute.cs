@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Reflection;
 using System.Text;
 using System.Web.Mvc;
 using EPiServer;
@@ -17,6 +16,7 @@ namespace JOS.InjectedAllowedTypes
 
     public class InjectedAllowedTypesAttribute : ValidationAttribute, IMetadataAware
     {
+        private readonly IContentLoader _contentLoader;
         internal static readonly IEnumerable<Type> SupportedTypes = new[]
         {
             typeof (ContentReference),
@@ -60,7 +60,12 @@ namespace JOS.InjectedAllowedTypes
 
         public InjectedAllowedTypesAttribute() : this(typeof(IContentData))
         {
+            _contentLoader = ServiceLocator.Current.GetInstance<IContentLoader>();
+        }
 
+        public InjectedAllowedTypesAttribute(IContentLoader contentLoader) : this(typeof(IContentData))
+        {
+            _contentLoader = contentLoader;
         }
 
         public InjectedAllowedTypesAttribute(params Type[] allowedTypes)
@@ -132,7 +137,6 @@ namespace JOS.InjectedAllowedTypes
         {
             if (value == null) return null;
 
-            var contentLocator = ServiceLocator.Current.GetInstance<IContentLoader>();
             var validationMessage = string.Empty;
             var stringBuilder = new StringBuilder();
             var allowedTypes = this.AllowedTypes;
@@ -157,8 +161,10 @@ namespace JOS.InjectedAllowedTypes
 
             foreach (var contentReference in contentReferences)
             {
-                var content = contentLocator.Get<IContent>(contentReference);
+                var content = _contentLoader.Get<IContent>(contentReference);
                 var type = content.GetOriginalType();
+                var interfaces = type.GetInterfaces();
+
                 var injectedAllowedTypesAttribute = InjectedAllowedTypes.GetInjectedAllowedTypesAttribute(validationContext.ObjectInstance.GetOriginalType(),
                     validationContext.MemberName);
 
@@ -170,7 +176,15 @@ namespace JOS.InjectedAllowedTypes
                         restrictedTypes.Concat(injectedAllowedTypesAttribute.RestrictedTypes).Distinct().ToArray();
                 }
 
-                if (restrictedTypes.Contains(type) || !allowedTypes.Contains(type))
+                if (restrictedTypes.Contains(type) || restrictedTypes.Any(x => interfaces.Any(i => i == x)))
+                {
+                    var message =
+                        string.Format(
+                            LocalizationService.Current.GetString("/injectedallowedtypes/errormessages/notallowed"), type.Name, validationContext.MemberName);
+                    validationMessage = stringBuilder.Append(message).AppendLine(".").ToString();
+                }
+
+                if (!allowedTypes.Contains(type) && !allowedTypes.Any(x => interfaces.Any(i => i == x)))
                 {
                     var message =
                         string.Format(
@@ -186,6 +200,17 @@ namespace JOS.InjectedAllowedTypes
 
             var validationResult = new ValidationResult(validationMessage);
             return validationResult;
+        }
+
+        /// <summary>
+        /// Only used for testing the IsValid method.
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="validationContext"></param>
+        /// <returns></returns>
+        public ValidationResult RunValidation(object value, ValidationContext validationContext)
+        {
+            return this.IsValid(value, validationContext);
         }
     }
 }
