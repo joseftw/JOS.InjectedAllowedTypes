@@ -14,15 +14,15 @@ public class InjectedAllowedTypesInitialization : IInitializableModule {
 
 		InjectedAllowedTypes.RegisterInjectedAllowedTypesAttributes(new Dictionary<string, InjectedAllowedTypesAttribute> {
 		{
-			string.Format("{0}.{1}", typeof(MediaPage).Name, "ContentArea"), new InjectedAllowedTypesAttribute {
+			string.Format("{0}.{1}", typeof(MediaPage).Name, nameof(MediaPage.ContentArea)), new InjectedAllowedTypesAttribute {
 				AllowedTypes = new[] { typeof(MusicBlock) }
 			}
 		}, {
-			string.Format("{0}.{1}", typeof(MediaPage).Name, "Items"), new InjectedAllowedTypesAttribute {
+			string.Format("{0}.{1}", typeof(MediaPage).Name, nameof(MediaPage.Items)), new InjectedAllowedTypesAttribute {
 				AllowedTypes = new[] { typeof(CoolPage) }
 			}
 		}, {
-			string.Format("{0}.{1}", typeof(MediaPage).Name, "ContentReference"), new InjectedAllowedTypesAttribute {
+			string.Format("{0}.{1}", typeof(MediaPage).Name, nameof(MediaPage.ContentReference)), new InjectedAllowedTypesAttribute {
 				AllowedTypes = new[] { typeof(CoolPage) }
 			}
 		}});
