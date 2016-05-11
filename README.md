@@ -12,17 +12,17 @@ public class InjectedAllowedTypesInitialization : IInitializableModule {
 			}
 		}});
 
-		InjectedAllowedTypes.RegisterInjectedAllowedTypesAttributes(new Dictionary<string, AllowedTypesAttribute> {
+		InjectedAllowedTypes.RegisterInjectedAllowedTypesAttributes(new Dictionary<string, InjectedAllowedTypesAttribute> {
 		{
-			string.Format("{0}.{1}", typeof(MediaPage).Name, "ContentArea"), new AllowedTypesAttribute {
+			string.Format("{0}.{1}", typeof(MediaPage).Name, "ContentArea"), new InjectedAllowedTypesAttribute {
 				AllowedTypes = new[] { typeof(MusicBlock) }
 			}
 		}, {
-			string.Format("{0}.{1}", typeof(MediaPage).Name, "Items"), new AllowedTypesAttribute {
+			string.Format("{0}.{1}", typeof(MediaPage).Name, "Items"), new InjectedAllowedTypesAttribute {
 				AllowedTypes = new[] { typeof(CoolPage) }
 			}
 		}, {
-			string.Format("{0}.{1}", typeof(MediaPage).Name, "ContentReference"), new AllowedTypesAttribute {
+			string.Format("{0}.{1}", typeof(MediaPage).Name, "ContentReference"), new InjectedAllowedTypesAttribute {
 				AllowedTypes = new[] { typeof(CoolPage) }
 			}
 		}});
