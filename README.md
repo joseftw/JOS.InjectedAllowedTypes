@@ -1,3 +1,4 @@
+For more detailed information, [read this](https://josefottosson.se/injected-allowedtypes-availablecontenttypes-in-episerver/)
 Example usage
 ```csharp
 [InitializableModule]
