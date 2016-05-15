@@ -1,5 +1,6 @@
 For more detailed information, [read this](https://josefottosson.se/injected-allowedtypes-availablecontenttypes-in-episerver/)
-Example usage
+
+**Example usage**
 ```csharp
 [InitializableModule]
 [ModuleDependency(typeof(EPiServer.Shell.ShellInitialization))]
